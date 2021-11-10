@@ -1,2 +1,0 @@
-(this.webpackJsonpreacttest=this.webpackJsonpreacttest||[]).push([[0],{11:function(t,e,n){"use strict";n.r(e);n(1);var c=n(3),o=n.n(c),i=(n(8),n(9),n(0));var r=function(t){t&&t instanceof Function&&n.e(3).then(n.bind(null,12)).then((function(e){var n=e.getCLS,c=e.getFID,o=e.getFCP,i=e.getLCP,r=e.getTTFB;n(t),c(t),o(t),i(t),r(t)}))};o.a.render(Object(i.jsx)("h1",{children:"Hello world in react!"}),document.getElementById("root")),r()},8:function(t,e,n){},9:function(t,e,n){}},[[11,1,2]]]);
-//# sourceMappingURL=main.5b7d1516.chunk.js.map
