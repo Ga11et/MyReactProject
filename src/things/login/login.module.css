@@ -1,0 +1,53 @@
+.main{
+    background-color: rgb(84, 96, 207);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main .loginBlock{
+    background-color: rgb(77, 77, 189);
+    width: 350px;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+.main .loginBlock h3{
+    color: white;
+    margin: 10px 0px 20px 50px;
+    padding: 0px;
+    font-size: 1.3em;
+}
+.main .loginBlock form span{
+    position: absolute;
+}
+.main .loginBlock form img {
+    margin-left: 20px;
+}
+.main .loginBlock label{
+    margin: 0px 0px 15px 20px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+.main .loginBlock label > input{
+    outline: none;
+    width: 30px;
+    height: 30px;
+}
+.main .loginBlock button{
+    margin: 0px 20px 20px 20px;
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border: 0px;
+    border-radius: 2px;
+    background-color: rgb(84, 96, 207);
+    color: white;
+    font-size: .8em;
+}
+.main .loginBlock button:hover{
+    border: 1px solid white;
+    cursor: pointer;
+}
+.main .loginBlock button:active{
+    background-color: rgb(77, 77, 189);
+}

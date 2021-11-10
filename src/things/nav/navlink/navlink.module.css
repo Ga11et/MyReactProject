@@ -1,0 +1,9 @@
+.main a{
+    display: block;
+    color: rgb(221, 221, 221);
+    text-decoration: none;
+    padding: 5px 0px;
+}
+.main .active{
+    color: rgb(248, 250, 136);
+}

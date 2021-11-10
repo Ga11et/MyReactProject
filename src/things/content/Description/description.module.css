@@ -1,0 +1,100 @@
+.item img{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.item .profile{
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    margin: 30px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+.item .profile img{
+    width: 100%;
+    margin: 0px;
+}
+.item .profile img:hover ~ .change label{
+    display: inline-block;
+}
+.item .profile  div .change{
+    position: absolute;
+}
+.item .profile > .noPic{
+    padding: 0px 0px 0px 30px;
+    position: relative;
+}
+.item .profile .noPic .description{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.item .profile > .noPic button{
+    background-color: rgba(0, 0, 0, 0.15);
+    color: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: .3s;
+    font-size: 1em;
+}
+.item .profile > .noPic .redact{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.item .profile > .noPic button:hover{
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
+}
+.item .profile > div h3{
+    margin: 0px;
+    font-size: 1.6em;
+}
+.item .profile  div .change input{
+    display: none;
+}
+.item .profile  div .change label{
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 176px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: .3s;
+}
+.item .profile  div .change label:hover{
+    border: 1px solid white;
+    display: inline-block;
+}
+.item .profile  div  .description{
+    margin: 15px 0px 0px 0px;
+    text-align: right;
+}
+.item .profile > div .searchWork{
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.item .profile > div .searchWork img{
+    width: 30px;
+    padding: 10px;
+}
+.item .profile div .contacts p{
+    margin: 0px;
+    position: relative;
+}
+.item .profile div .contacts p span{
+    font-style: italic;
+    position: absolute;
+    left: 150px;
+}

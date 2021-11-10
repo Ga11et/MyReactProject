@@ -1,0 +1,8 @@
+.item{  
+    display: inline-block;
+    background-color: rgb(156, 24, 24);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 15px;
+}

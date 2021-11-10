@@ -1,0 +1,11 @@
+.main{
+    background-color: rgb(179, 139, 52);
+    padding: 20px 0px 20px 30px;
+}
+.main > p{
+    color: red;
+    text-decoration: underline;
+}
+.main p:hover{
+    cursor: pointer;
+}

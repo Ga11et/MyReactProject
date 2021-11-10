@@ -1,0 +1,14 @@
+.item{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 30px;
+}
+.item img{
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0px;
+}
+.item p{
+    margin: 15px 0px 0px 0px;
+}

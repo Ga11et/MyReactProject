@@ -1,0 +1,15 @@
+.main{
+    margin-right: 30px;
+    border-radius: 8px;
+    margin-top: 60px;
+    background-color: rgba(70, 30, 4, 0.3);
+}
+.main h3{
+    margin: 0px;
+    padding: 10px 10px;
+}
+.main > div{
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    grid-auto-flow: dense;
+}

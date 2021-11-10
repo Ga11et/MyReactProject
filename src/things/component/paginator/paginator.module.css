@@ -1,0 +1,37 @@
+.item .numberPage{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: transparent;
+    margin: 0px 10px 10px 0px;
+    border: 1px solid white;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 2px;
+    box-sizing: border-box;
+}
+.item .numberPage:hover{
+    cursor: pointer;
+}
+.item .active{
+    border-color: red;
+}
+.item button{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: transparent;
+    margin: 0px 10px 10px 0px;
+    border: 1px solid white;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 2px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 3px
+}
+.item button:hover{
+    cursor: pointer;
+}
