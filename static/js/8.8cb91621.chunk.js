@@ -1,2 +1,0 @@
-(this.webpackJsonpproject=this.webpackJsonpproject||[]).push([[8],{317:function(t,e,i){t.exports={item:"music_item__1Ei1J"}},321:function(t,e,i){"use strict";i.r(e);var c=i(317),s=i.n(c),n=i(2);e.default=function(t){return Object(n.jsx)("div",{className:s.a.item,children:"Music"})}}}]);
-//# sourceMappingURL=8.8cb91621.chunk.js.map
