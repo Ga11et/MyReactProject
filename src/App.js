@@ -5,7 +5,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import React, { useMemo } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { initialiasationSuccess } from './redux/appReducer';
+import { AppRedThunks } from './redux/appReducer';
 import { Preloader } from './things/component/preloader/preloader';
 import { withSuspense } from './hoc/withSuspense';
 const DialogsContainer = React.lazy(() => import('./things/dialogs/dialogsContainer'));
@@ -15,6 +15,7 @@ const Login = React.lazy(() => import('./things/login/login'));
 const News = React.lazy(() => import('./things/news/news'));
 const Music = React.lazy(() => import('./things/music/music'));
 const Settings = React.lazy(() => import('./things/settings/settings'));
+
 
 const App = ({ initialiasationSuccess, ...props }) => {
 
@@ -39,17 +40,18 @@ const App = ({ initialiasationSuccess, ...props }) => {
         <Route path='/login' render={withSuspense(Login)} />
       </Switch>
     </div>
-  </>
+     </> 
 }
 
 
 const mapStateToProps = (state) => ({
   isAuth: state.app.initialised
 })
+const mapDespatchToProps = {
+  initialiasationSuccess: AppRedThunks.initialiasationSuccess
+}
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, {
-    initialiasationSuccess
-  })
+  connect(mapStateToProps, mapDespatchToProps)
 )(App)
