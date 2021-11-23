@@ -35,7 +35,7 @@ const following = (item: Array<personType>, id: number, isTrue: boolean): Array<
     })
 }
 
-const findPeopleReducer = (state = initialState, action: actionsTypes<typeof FindPeopleRedActions>): initialStateType => {
+export const findPeopleReducer = (state = initialState, action: actionsTypes<typeof FindPeopleRedActions>): initialStateType => {
     switch (action.type) {
         case 'FOLLOW':
             return {
@@ -78,7 +78,7 @@ const findPeopleReducer = (state = initialState, action: actionsTypes<typeof Fin
 
 // Actions
 
-export const  FindPeopleRedActions = {
+export const FindPeopleRedActions = {
     follow: (userId: number) => ({ type: 'FOLLOW', userId } as const),
     unFollow:  (userId: number) => ({ type: 'UNFOLLOW', userId } as const),
     showMore: (people:  Array<personType>) => ({ type: 'GET_PEOPLE', people } as const),

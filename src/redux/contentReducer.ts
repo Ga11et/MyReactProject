@@ -5,7 +5,7 @@ import { actionsTypes, photosType, PostType, profileType } from "../types/types"
 import { AppStateType } from "./redux-state.js"
 
 
-let initialState = {
+const initialState = {
     profile: {} as profileType,
     posts: [
         { id: 1, message: "Are there somebody, who is more clever then me?" },
@@ -66,7 +66,7 @@ export const contentReducer = (state = initialState, action: actionsTypes<typeof
 export const ContentRedActions = {
     createNewPost: (text: string) => ({ type: 'ADD_POST', text } as const),
     setProfile: (profile: profileType) => ({ type: 'SET_PROFILE', profile } as const),
-    getStatus: (status: string) => ({ type: 'GET_STATUS', status } as const),
+    setStatus: (status: string) => ({ type: 'GET_STATUS', status } as const),
     successed: (isTrue: boolean) => ({ type: 'SET_PROFILE_SUCCESS', isTrue } as const),
     deletePost: (postId: number) => ({ type: 'DELETE_POST', postId } as const),
     newProfilePhoto: (photos: photosType) => ({ type: 'SET_PROFILE_PHOTO', photos } as const) 
@@ -83,16 +83,16 @@ export const ContentRedThunks = {
         const dataUserInfo = await API.getUser(userId)
         dispatch(ContentRedActions.setProfile(dataUserInfo))
         const data = await API.getStatusApi(userId)
-        dispatch(ContentRedActions.getStatus(data))
+        dispatch(ContentRedActions.setStatus(data))
         dispatch(ContentRedActions.successed(true))
     },
     putStatus: (status: string) => async (dispatch: dispatchType) => {
         const data = await API.putStatusApi(status)
         if (data === 0) {
-            dispatch(ContentRedActions.getStatus(status))
+            dispatch(ContentRedActions.setStatus(status))
         }
     },
-    changeProfilePhoto: (file: any) => async (dispatch: dispatchType) => {
+    changeProfilePhoto: (file: File) => async (dispatch: dispatchType) => {
         const status = await API.putProfilePhotoApi(file)
         if (status.resultCode === 0) {
             dispatch(ContentRedActions.newProfilePhoto(status.data.photos))

@@ -10,10 +10,10 @@ export type loginDataType = {
 type GetpeopleDataType = {
     items: Array<personType>, totalCount: number, error: string
 }
-type CommonDataType = {
+export type CommonDataType = {
     resultCode: number, messages: Array<string>, data: Object
 }
-type AuthMeDataType = {
+export type AuthMeDataType = {
     data: {id: number, email: string, login: string}
     resultCode: number
     messages: Array<string>
@@ -21,7 +21,7 @@ type AuthMeDataType = {
 type GetCaptchaUrlDataType = {
     url: string
 }
-type PhotosDataType = {
+export type PhotosDataType = {
     resultCode: number, messages: Array<string>, data: {photos: {small: string, large: string}}
 }
 
@@ -77,7 +77,7 @@ export const API = {
         return instance.delete<CommonDataType>(`auth/login`)
             .then( response => response.data.resultCode)
     },
-    putProfilePhotoApi: async (photo: any) => {
+    putProfilePhotoApi: async (photo: File) => {
         const photoForLoading = new FormData()
         photoForLoading.append('image', photo);
         const response = await instance.put<PhotosDataType>('profile/photo', photoForLoading, {

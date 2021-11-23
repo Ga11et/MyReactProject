@@ -1,9 +1,9 @@
 import { actionsTypes } from "../types/types"
 import { AuthRedThunks } from "./authReducer"
 
-let initialState = ({
+let initialState = {
     initialised: false as boolean
-})
+}
 
 // Reducer
 
@@ -22,18 +22,20 @@ export const appReducer = (state = initialState, action: actionsTypes<typeof App
 
 // Actions
 
-const AppRedActions = {
+export const AppRedActions = {
     initialiseApp: () => ({type: 'INITIALISE_APP'} as const)
 }
 
 // Thunks
 
+// type dipatchType = Dispatch<actionsTypes<typeof AppRedActions>>
+
 export const AppRedThunks = {
-    initialiasationSuccess: () => (dispatch: any) => {
+    initialiasationSuccess: () => async (dispatch: any) => {
         let promise = dispatch(AuthRedThunks.authMe())
-        Promise.all([promise]).then( () => {
-                dispatch(AppRedActions.initialiseApp())
-            })
+        await Promise.all([promise])
+        dispatch(AppRedActions.initialiseApp())
+
     
     } 
 }

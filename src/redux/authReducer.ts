@@ -3,7 +3,7 @@ import { stopSubmit } from "redux-form"
 import { API, loginDataType } from "../dal/api"
 import { actionsTypes } from "../types/types"
 
-let initialState = {
+const initialState = {
     userId: null as number | null,
     userName: null as string | null,
     userEmail: null as string | null,
@@ -39,7 +39,7 @@ export const authReducer = (state = initialState, action: actionsTypes<typeof Au
 
 // Actions
 
-const AuthRedActions = {
+export const AuthRedActions = {
     authMeAC: (userId: number | null, userEmail: string | null, userName: string | null, isAuth: boolean) => ({
         type: 'AUTH_ME',
         data: { userId, userEmail, userName, isAuth }
@@ -50,17 +50,17 @@ const AuthRedActions = {
 
 // Thunks
 
-type dispatchType = Dispatch<actionsTypes<typeof AuthRedActions>>
+type AuthRedDispatchType = Dispatch<actionsTypes<typeof AuthRedActions>>
 
 export const AuthRedThunks = {
-    authMe: () => async (dispatch: dispatchType) => {
+    authMe: () => async (dispatch: AuthRedDispatchType) => {
         const response = await API.isAuthCheck()
         if (response.resultCode === 0) {
-            let { id, email, login } = response.data
+            const { id, email, login } = response.data
             dispatch(AuthRedActions.authMeAC(id, email, login, true))
         }
     },
-    postLoginData: (data: loginDataType) => async (dispatch: dispatchType) => {
+    postLoginData: (data: loginDataType) => async (dispatch: AuthRedDispatchType) => {
         const loginData = await API.postLoginDataApi(data)
         if (loginData.resultCode === 0) {
             const authCheck = await API.isAuthCheck()
@@ -78,7 +78,7 @@ export const AuthRedThunks = {
             }
         } 
     },
-    logout: () => async (dispatch: dispatchType) => {
+    logout: () => async (dispatch: AuthRedDispatchType) => {
         const response = await API.logoutApi()
         if (response === 0) {
             dispatch(AuthRedActions.authMeAC(null, null, null, false))
