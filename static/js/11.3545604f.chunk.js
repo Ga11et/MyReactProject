@@ -1,0 +1,2 @@
+(this.webpackJsonpproject=this.webpackJsonpproject||[]).push([[11],{323:function(t,e,s){t.exports={item:"settings_item__2Pf1Z"}},328:function(t,e,s){"use strict";s.r(e);s(0);var i=s(323),n=s.n(i),c=s(2);e.default=function(t){return Object(c.jsx)("div",{className:n.a.item,children:"Settings"})}}}]);
+//# sourceMappingURL=11.3545604f.chunk.js.map
