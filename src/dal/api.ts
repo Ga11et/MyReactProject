@@ -1,6 +1,6 @@
 import axios from 'axios'
 import FormData from 'form-data'
-import { personType, profileType } from '../types/types'
+import { personType, profileType, searchFormType } from '../types/types'
 
 // Types
 
@@ -29,16 +29,16 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        "API-KEY": "48f5b1a7-6286-4f77-9a40-f9b16f3f5224"
+        "API-KEY": "3e289f88-561e-411a-9d9b-7a41c7a17d8c"
     }
 })
 
 // API
 
 export const API = {
-    getPeople: (currentPage: number, pageSize: number) => {
-        return instance.get<GetpeopleDataType>(`users?page=${currentPage}&count=${pageSize}`)
-            .then( data => data.data.items)
+    getPeople: (currentPage: number, pageSize: number, searchForm: searchFormType = {term: '', friend: ''}) => {
+        return instance.get<GetpeopleDataType>(`users?page=${currentPage}&count=${pageSize}&term=${searchForm.term}&friend=${searchForm.friend}`)
+            .then( data => data.data)
     },
     postFollow: (userId: number) => {
         return instance.post<CommonDataType>(`follow/${userId}`)

@@ -4,7 +4,8 @@ import userImg from '../../redux/img/user.jpg'
 import React from 'react'
 import loadingIconfrom from '../../assets/loading.svg'
 import {PaginatorScript} from '../component/paginator/paginator'
-import { personType } from '../../types/types'
+import { personType, searchFormType } from '../../types/types'
+import { FoemikSearchForm } from './formiksearchform/formikSearchForm'
 
 type propsType = {
     people: Array<personType>
@@ -13,13 +14,17 @@ type propsType = {
     countPeopleOnPage: number
     activePage: number
     isLoading: boolean
+    searchForm: searchFormType
 
     onNumberPageClick: (pageId: number) => void
     followPerson: (userId: number) => void
     unFollowPerson: (userId: number) => void
+    putSearchForm: (searchForm: searchFormType) => void
 }
 
 const FindPeople: React.FC<propsType> = (props) => {
+
+
     const persons = props.people.map((el) => {
         return (
             <Person userId={el.id}
@@ -36,12 +41,17 @@ const FindPeople: React.FC<propsType> = (props) => {
     )})
     return (
         <div className={css.main}>
+            <FoemikSearchForm putSearchForm={props.putSearchForm} />
             <PaginatorScript countPages={props.countPages}
                 countPeopleOnPage={props.countPeopleOnPage}
                 onNumberPageClick={props.onNumberPageClick}
                 activePage={props.activePage} />
             {props.isLoading ? <img src={loadingIconfrom} alt='loadingIcon' /> : null}
             {persons}
+            <PaginatorScript countPages={props.countPages}
+                countPeopleOnPage={props.countPeopleOnPage}
+                onNumberPageClick={props.onNumberPageClick}
+                activePage={props.activePage} />
         </div>
     )
 }

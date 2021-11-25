@@ -6,7 +6,7 @@ const findPeople = (someState: AppStateType) => someState.findpeople
 export const FindPeoplrSelectors = {
     isLoadingSelector: createSelector( findPeople, data => data.isLoading),
     getPeopleSelector: createSelector( findPeople, data => data.people),
-    countPagesSelector: createSelector( findPeople, data => data.countPages),
+    countPagesSelector: createSelector( findPeople, data => data.countPeople),
     countPeopleOnPageSelector: createSelector( findPeople, data => data.countPeopleOnPage),
     activePageSelector: createSelector( findPeople, data => data.active)
 }

@@ -7,8 +7,6 @@ import imgvadim from './img/vadim.jpg'
 
 // State
 
-
-
 let initialState = {
     links: [
         {name: "Profile", to: "/profile", id: 1111},

@@ -11,19 +11,25 @@ jest.mock('../../dal/api')
 const APIMock = API as jest.Mocked<typeof API>
 
 const dispatch = jest.fn()
+const setState = jest.fn()
 
-const getPeopleData: personType[] = [
-    { id: 1, followed: true, photos: { small: imgandrey, large: imgandrey }, name: 'Andrey', status: "I'm not gay", location: { city: 'London', country: 'Great Britan' } },
-    { id: 2, followed: false, photos: { small: imgfyodor, large: imgfyodor }, name: 'Fyodor', status: "Hi, i'm your boss", location: { city: 'Syktyvkar', country: 'Russia' } },
-    { id: 3, followed: false, photos: { small: imgkirill, large: imgkirill }, name: 'Kirill', status: "I live in Moskow", location: { city: 'Moskow', country: 'Russia' } },
-    { id: 4, followed: false, photos: { small: imgsasha, large: imgsasha }, name: 'Sasha', status: "Hahaahahahaha", location: { city: 'Syktyvkar', country: 'Russia' } },
-    { id: 5, followed: true, photos: { small: imgvadim, large: imgvadim }, name: 'Vadim', status: "Stop calling me Huim", location: { city: 'Kiev', country: 'Ukraine' } }
-]
 
+const getPeopleData = {
+    items: [
+        { id: 1, followed: true, photos: { small: imgandrey, large: imgandrey }, name: 'Andrey', status: "I'm not gay", location: { city: 'London', country: 'Great Britan' } },
+        { id: 2, followed: false, photos: { small: imgfyodor, large: imgfyodor }, name: 'Fyodor', status: "Hi, i'm your boss", location: { city: 'Syktyvkar', country: 'Russia' } },
+        { id: 3, followed: false, photos: { small: imgkirill, large: imgkirill }, name: 'Kirill', status: "I live in Moskow", location: { city: 'Moskow', country: 'Russia' } },
+        { id: 4, followed: false, photos: { small: imgsasha, large: imgsasha }, name: 'Sasha', status: "Hahaahahahaha", location: { city: 'Syktyvkar', country: 'Russia' } },
+        { id: 5, followed: true, photos: { small: imgvadim, large: imgvadim }, name: 'Vadim', status: "Stop calling me Huim", location: { city: 'Kiev', country: 'Ukraine' } }
+    ] as personType[],
+    error: '' as string,
+    totalCount: 10
+}
 beforeEach(() => {
     APIMock.postFollow.mockReturnValue(Promise.resolve(0))
     APIMock.deleteFollow.mockReturnValue(Promise.resolve(0))
     APIMock.getPeople.mockReturnValue(Promise.resolve(getPeopleData))
+    setState.mockResolvedValue({ searchForm: { temp: '' } })
 })
 
 test('followPerson', async () => {
@@ -47,12 +53,13 @@ test('unFollowPerson', async () => {
     expect(dispatch).toHaveBeenNthCalledWith(3, FindPeopleRedActions.toggleButton(false, 3))
 })
 test('showPeople', async () => {
-    const thunk = FindPeopleRedThunks.showPeople(5,3)
+    const thunk = FindPeopleRedThunks.showPeople(5, 3, {term: '', friend: ''})
 
-    await thunk(dispatch)
+    await thunk(dispatch, setState)
 
-    expect(dispatch).toBeCalledTimes(3)
+    expect(dispatch).toBeCalledTimes(4)
     expect(dispatch).toHaveBeenNthCalledWith(1, FindPeopleRedActions.toggleLoading(true))
     expect(dispatch).toHaveBeenNthCalledWith(2, FindPeopleRedActions.toggleLoading(false))
-    expect(dispatch).toHaveBeenNthCalledWith(3, FindPeopleRedActions.showMore(getPeopleData))
+    expect(dispatch).toHaveBeenNthCalledWith(3, FindPeopleRedActions.putCountPeople(10))
+    expect(dispatch).toHaveBeenNthCalledWith(4, FindPeopleRedActions.showMore(getPeopleData.items))
 })

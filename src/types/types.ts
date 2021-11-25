@@ -56,7 +56,10 @@ export type friendsType = {
     name: string
     id: number
 }
-
+export type searchFormType = {
+    term: string,
+    friend: string
+}
 
 type actionType<T> = T extends {[key: string]: infer U} ? U : never
 export type actionsTypes<T extends {[key: string]: (...args: Array<any>) => any}> = ReturnType<actionType<T>> 

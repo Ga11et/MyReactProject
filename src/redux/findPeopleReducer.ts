@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { API } from '../dal/api';
-import { actionsTypes, personType } from '../types/types'
+import { actionsTypes, personType, searchFormType } from '../types/types'
 import imgandrey from './img/andrey.jpg'
 import imgfyodor from './img/fyodor.jpg'
 import imgkirill from './img/kirill.jpg'
@@ -17,16 +17,17 @@ let initialState = {
         { id: 4, followed: false, photos: { small: imgsasha, large: imgsasha }, name: 'Sasha', status: "Hahaahahahaha", location: { city: 'Syktyvkar', country: 'Russia' } },
         { id: 5, followed: true, photos: { small: imgvadim, large: imgvadim }, name: 'Vadim', status: "Stop calling me Huim", location: { city: 'Kiev', country: 'Ukraine' } },
     ] as Array<personType>,
-    countPages: 10000,
+    countPeople: 10000,
     countPeopleOnPage: 10,
     active: 0 as number,
     isLoading: false,
-    arrayButtonsLoading: [] as Array<number>
+    arrayButtonsLoading: [] as Array<number>,
+    searchForm: {term: '', friend: ''} as searchFormType
 }
 
 // Reducer
 
-type initialStateType = typeof initialState
+type FindPeopleStateType = typeof initialState
 const following = (item: Array<personType>, id: number, isTrue: boolean): Array<personType> => {
     return item.map((el) => {
         let element = el
@@ -35,7 +36,7 @@ const following = (item: Array<personType>, id: number, isTrue: boolean): Array<
     })
 }
 
-export const findPeopleReducer = (state = initialState, action: actionsTypes<typeof FindPeopleRedActions>): initialStateType => {
+export const findPeopleReducer = (state = initialState, action: actionsTypes<typeof FindPeopleRedActions>): FindPeopleStateType => {
     switch (action.type) {
         case 'FOLLOW':
             return {
@@ -71,6 +72,16 @@ export const findPeopleReducer = (state = initialState, action: actionsTypes<typ
                     [...state.arrayButtonsLoading, action.userId]
                     : [...state.arrayButtonsLoading.filter(el => el !== action.userId)]
             }
+        case 'PUT_SEARCH_FORM':
+            return {
+                ...state,
+                searchForm: action.formik
+            }
+        case 'PUT_COUNT_PEOPLE':
+            return {
+                ...state,
+                countPeople: action.newCount
+            }
         default:
             return state
     }
@@ -84,19 +95,23 @@ export const FindPeopleRedActions = {
     showMore: (people:  Array<personType>) => ({ type: 'GET_PEOPLE', people } as const),
     changeActivePage: (number: number) => ({ type: 'CHANGE_ACTIVE_PAGE', number } as const),
     toggleLoading: (toggle: boolean) => ({ type: 'TOGGLE_LOADING', toggle } as const),
-    toggleButton: (bool: boolean, userId: number) => ({ type: 'TOGGLE_BUTTON', bool, userId } as const)
+    toggleButton: (bool: boolean, userId: number) => ({ type: 'TOGGLE_BUTTON', bool, userId } as const),
+    putSearchForm: (formik: searchFormType) => ({ type: 'PUT_SEARCH_FORM', formik } as const),
+    putCountPeople: (newCount: number) => ({ type: 'PUT_COUNT_PEOPLE', newCount } as const)
 }
 
 // Thunks
 
 type dispatchType = Dispatch<actionsTypes<typeof FindPeopleRedActions>>
+type getStateType = () => FindPeopleStateType
 
 export const FindPeopleRedThunks = {
-    showPeople: (number: number, count: number) => async (dispatch: dispatchType) => {
+    showPeople: (number: number, count: number, searchForm: searchFormType) => async (dispatch: dispatchType, setState: getStateType) => {
         dispatch(FindPeopleRedActions.toggleLoading(true))
-        const responce = await API.getPeople(number, count)
+        const responce = await API.getPeople(number, count, searchForm)
         dispatch(FindPeopleRedActions.toggleLoading(false))
-        dispatch(FindPeopleRedActions.showMore(responce))
+        dispatch(FindPeopleRedActions.putCountPeople(responce.totalCount))
+        dispatch(FindPeopleRedActions.showMore(responce.items))
     },
     followPerson: (userId: number) => async (dispatch: dispatchType) => {
         dispatch(FindPeopleRedActions.toggleButton(true, userId))

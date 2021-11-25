@@ -1,0 +1,36 @@
+.main{
+    padding: 30px 30px 0px 30px;
+    display: flex;
+}
+.main > input{
+    height: 30px;
+    border-radius: 7px;
+    border: 0px;
+    margin-right: 10px;
+    outline: none;
+    font-size: 1em;
+    width: 200px;
+    padding-left: 10px;
+}
+.main > select{
+    height: 32px;
+    outline: none;
+    font-size: 0.8em;
+    border-radius: 7px;
+    border: 0px;
+    margin-right: 10px;
+    padding-left: 10px;
+    width: 200px;
+}
+.main > button{
+    outline: none;
+    height: 32px;
+    width: 100px;
+    border: 0px;
+    border-radius: 7px;
+    font-size: 0.7em;
+}
+.main > button:hover{
+    cursor: pointer;
+    background-color: rgb(221, 212, 212);
+}

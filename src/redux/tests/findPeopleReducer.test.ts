@@ -1,4 +1,4 @@
-import { personType } from '../../types/types';
+import { personType, searchFormType } from '../../types/types';
 import { FindPeopleRedActions, findPeopleReducer } from './../findPeopleReducer';
 import imgandrey from '../img/andrey.jpg'
 import imgfyodor from '../img/fyodor.jpg'
@@ -14,11 +14,12 @@ const state = {
         { id: 4, followed: false, photos: { small: imgsasha, large: imgsasha }, name: 'Sasha', status: "Hahaahahahaha", location: { city: 'Syktyvkar', country: 'Russia' } },
         { id: 5, followed: true, photos: { small: imgvadim, large: imgvadim }, name: 'Vadim', status: "Stop calling me Huim", location: { city: 'Kiev', country: 'Ukraine' } },
     ] as Array<personType>,
-    countPages: 10000,
+    countPeople: 10000,
     countPeopleOnPage: 10,
     active: 0 as number,
     isLoading: false,
-    arrayButtonsLoading: [] as Array<number>
+    arrayButtonsLoading: [] as Array<number>,
+    searchForm: {} as searchFormType
 }
 
 test('follow', () => {
@@ -76,4 +77,19 @@ test('toggleButton', () => {
 
     expect(localState.arrayButtonsLoading.length).toBe(1)
     expect(localState.arrayButtonsLoading[0]).toBe(4)
+})
+test('putSearchForm', () => {
+    const action = FindPeopleRedActions.putSearchForm({term: 'someInfo', friend: ''})
+
+    const localState = findPeopleReducer(state, action)
+
+    expect(localState.searchForm.term).toBe('someInfo')
+    expect(localState.searchForm.friend).toBe('')
+})
+test('putCountPeople', () => {
+    const action = FindPeopleRedActions.putCountPeople(10)
+
+    const localState = findPeopleReducer(state, action)
+
+    expect(localState.countPeople).toBe(10)
 })
