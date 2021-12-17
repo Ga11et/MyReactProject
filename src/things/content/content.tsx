@@ -1,17 +1,15 @@
-import css from './content.module.css'
-import PostsContainer from './Posts/postsContainer'
 import DescriptionContainer from './Description/descriptionContainer'
 import React from 'react'
+import { Posts } from './Posts/posts'
 
 type propsType = {
 }
 
-const Content: React.FC<propsType> = (props) => {
-    return (
-        <div className={css.main}>
+const ContentPage: React.FC<propsType> = (props) => {
+    return <section style={{ width: '100%' }}>
             <DescriptionContainer />
-            <PostsContainer />
-        </div>
-)}
+            <Posts />
+        </section>
+}
 
-export default Content
+export default ContentPage

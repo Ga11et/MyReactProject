@@ -1,5 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { FindPeopleRedThunks } from '../../../redux/findPeopleReducer'
 import css from './person.module.css'
 
 type propsType = {
@@ -11,12 +13,19 @@ type propsType = {
     status: string
     country: string
     city: string
-
-    unFollow: (userId: number) => void
-    follow: (userId: number) => void
 }
 
 const Person: React.FC<propsType> = (props) => {
+
+    const dispatch = useDispatch()
+
+    const follow = (userId: number) => {
+        dispatch(FindPeopleRedThunks.followPerson(userId))
+    }
+    const unFollow = (userId: number) => {
+        dispatch(FindPeopleRedThunks.unFollowPerson(userId))
+    }
+
     return (
         <section className={css.body}>
             <div className={css.avatar}>
@@ -25,9 +34,9 @@ const Person: React.FC<propsType> = (props) => {
                 </NavLink>
                 {(props.followed)
                     ? <button disabled={props.isButtonLoading.some( el => el === props.userId)} 
-                            onClick={() => props.unFollow(props.userId)}>Unfollow</button>
+                            onClick={() => unFollow(props.userId)}>Unfollow</button>
                     : <button disabled={props.isButtonLoading.some( el => el === props.userId)} 
-                            onClick={() => props.follow(props.userId)}>Follow</button>}
+                            onClick={() => follow(props.userId)}>Follow</button>}
             </div>
             <div className={css.main}>
                 <div className={css.name}>

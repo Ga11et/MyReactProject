@@ -1,37 +1,47 @@
 .main{
-    background-color: rgb(84, 96, 207);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .main .loginBlock{
-    background-color: rgb(77, 77, 189);
     width: 350px;
     border: 1px solid white;
     border-radius: 8px;
 }
 .main .loginBlock h3{
-    color: white;
+    color: black;
     margin: 10px 0px 20px 50px;
     padding: 0px;
     font-size: 1.3em;
 }
-.main .loginBlock form span{
-    position: absolute;
+
+.main .loginBlock form > input{
+    margin: 0px 20px 20px;
+    width: 300px;
+    height: 40px;
+    outline: none;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: inherit;
+    color: white;
 }
 .main .loginBlock form img {
     margin-left: 20px;
 }
 .main .loginBlock label{
     margin: 0px 0px 15px 20px;
-    color:white;
+    color:black;
     display: flex;
     align-items: center;
 }
-.main .loginBlock label > input{
+.main .loginBlock input[type='checkbox']{
     outline: none;
     width: 30px;
     height: 30px;
+    margin-right: 10px;
 }
 .main .loginBlock button{
     margin: 0px 20px 20px 20px;
@@ -40,14 +50,9 @@
     outline: none;
     border: 0px;
     border-radius: 2px;
-    background-color: rgb(84, 96, 207);
-    color: white;
-    font-size: .8em;
+    font-size: 1em;
 }
 .main .loginBlock button:hover{
-    border: 1px solid white;
-    cursor: pointer;
-}
-.main .loginBlock button:active{
-    background-color: rgb(77, 77, 189);
+    background: #91d5ff;
+    color: black;
 }

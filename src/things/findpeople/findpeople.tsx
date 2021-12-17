@@ -1,31 +1,43 @@
 import css from './findpeople.module.css'
 import Person from './person/person'
 import userImg from '../../redux/img/user.jpg'
-import React from 'react'
+import React, { useEffect } from 'react'
 import loadingIconfrom from '../../assets/loading.svg'
-import {PaginatorScript} from '../component/paginator/paginator'
-import { personType, searchFormType } from '../../types/types'
+import { PaginatorScript } from '../component/paginator/paginator'
 import { FoemikSearchForm } from './formiksearchform/formikSearchForm'
-
-type propsType = {
-    people: Array<personType>
-    isButtonLoading: Array<number>
-    countPages: number
-    countPeopleOnPage: number
-    activePage: number
-    isLoading: boolean
-    searchForm: searchFormType
-
-    onNumberPageClick: (pageId: number) => void
-    followPerson: (userId: number) => void
-    unFollowPerson: (userId: number) => void
-    putSearchForm: (searchForm: searchFormType) => void
-}
-
-const FindPeople: React.FC<propsType> = (props) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-state'
+import { FindPeopleRedActions, FindPeopleRedThunks } from '../../redux/findPeopleReducer'
+import { Pagination } from 'antd'
 
 
-    const persons = props.people.map((el) => {
+
+const FindPeoplePage: React.FC<{}> = (props) => {
+
+    const people = useSelector((state: AppStateType) => state.findpeople.people)
+    const arrayButtonsLoading = useSelector((state: AppStateType) => state.findpeople.arrayButtonsLoading)
+    const countPeople = useSelector((state: AppStateType) => state.findpeople.countPeople)
+    const countPeopleOnPage = useSelector((state: AppStateType) => state.findpeople.countPeopleOnPage)
+    const activePage = useSelector((state: AppStateType) => state.findpeople.active)
+    const isLoading = useSelector((state: AppStateType) => state.findpeople.isLoading)
+    const searchForm = useSelector((state: AppStateType) => state.findpeople.searchForm)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(FindPeopleRedThunks.showPeople(activePage, countPeopleOnPage, searchForm))
+    }, [activePage])
+
+    useEffect(() => {
+        dispatch(FindPeopleRedActions.changeActivePage(1))
+        if (activePage === 1) dispatch(FindPeopleRedThunks.showPeople(1, countPeopleOnPage, searchForm))
+    }, [searchForm])
+
+    const onNumberPageClick = (number: number) => {
+        dispatch(FindPeopleRedActions.changeActivePage(number))
+    }
+
+    const persons = people.map((el) => {
         return (
             <Person userId={el.id}
                 avatar={el.photos.small != null ? el.photos.small : userImg}
@@ -34,26 +46,29 @@ const FindPeople: React.FC<propsType> = (props) => {
                 status={el.status}
                 country={"some country"}
                 city={"some city"}
-                follow={props.followPerson}
-                unFollow={props.unFollowPerson}
-                isButtonLoading={props.isButtonLoading}
+                isButtonLoading={arrayButtonsLoading}
                 key={el.id} />
-    )})
+        )
+    })
     return (
         <div className={css.main}>
-            <FoemikSearchForm putSearchForm={props.putSearchForm} />
-            <PaginatorScript countPages={props.countPages}
-                countPeopleOnPage={props.countPeopleOnPage}
-                onNumberPageClick={props.onNumberPageClick}
-                activePage={props.activePage} />
-            {props.isLoading ? <img src={loadingIconfrom} alt='loadingIcon' /> : null}
+            <FoemikSearchForm />
+            <Pagination showSizeChanger={false}
+                current={activePage}
+                showQuickJumper
+                total={countPeople}
+                onChange={onNumberPageClick}
+                style={{ marginTop: '30px' }} />
+            {isLoading ? <img src={loadingIconfrom} alt='loadingIcon' /> : null}
             {persons}
-            <PaginatorScript countPages={props.countPages}
-                countPeopleOnPage={props.countPeopleOnPage}
-                onNumberPageClick={props.onNumberPageClick}
-                activePage={props.activePage} />
+            <Pagination showSizeChanger={false}
+                showQuickJumper
+                current={activePage}
+                total={countPeople}
+                onChange={onNumberPageClick}
+                style={{ marginTop: '30px' }} />
         </div>
     )
 }
 
-export default FindPeople
+export default FindPeoplePage

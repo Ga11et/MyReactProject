@@ -1,37 +1,13 @@
 
-.main{
-    width: 1400px;
-    height: 100px;
-    margin: 0px auto;
-    background-color: rgb(18, 92, 37);
-    display: grid;
-    grid-template-columns: 80% 1fr;
-    grid-template-rows: 100%;
-}
-.main img{
-    height: 90%;
-    margin-left: 20px;
-    margin-top: 5px;
-}
-.main .loginCont{
+.link{
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    margin: 30px;
-}
-.main .loginCont > div {
-    display: inline-block;
+    height: 40px;
+    padding: 0px 8px 0px 8px;
     border: 1px solid white;
     border-radius: 8px;
-    padding: 8px;
-    margin: 0px;
-}
-.main .loginCont > div a{
     color: white;
-   
 }
-.main .loginCont p{
+.link:active{
     color: white;
-    display: inline-block;
-    margin: 0px;
 }

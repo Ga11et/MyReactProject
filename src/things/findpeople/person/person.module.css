@@ -1,8 +1,8 @@
 .body{
-    height: 200px;
+    height: 210px;
     display: grid;
     grid-template-columns: 200px 1fr;
-    margin: 30px 30px 30px 30px;
+    margin: 30px 0px 30px 0px;
     border: 1px solid white;
     border-radius: 7px;
 }
@@ -20,11 +20,25 @@
 .body .avatar button{
     height:  30px;
     width: 150px;
+    border: 0px;
     border-radius: 8px;
     font-size: 14px;
     margin-top: 5px;
+    outline: none;
+}
+.body .avatar button:hover{
+    cursor: pointer;
 }
 .body .main{
     display: grid;
     grid-template-columns: 80% 1fr;
+    padding-top: 20px;
+    font-size: 1.1em;
 }
+.body .main .name a{
+    color: black
+}
+.body .main .name a:hover{
+    color: black;
+}
+

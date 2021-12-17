@@ -1,9 +1,8 @@
 .main{
-    font-size: 24px;
     color: rgba(0, 0, 0, 0.589);
 }
 .main p{
-    margin: 5px 10px;
+    margin: 0 0 10px 0;
 }
 .main input{
     margin: 5px 10px;

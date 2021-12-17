@@ -10,6 +10,7 @@ type propsType = {
 
 const ProfileStatus: React.FC<propsType> = ({isMyProfile, ...props}) => {
     
+    
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
 

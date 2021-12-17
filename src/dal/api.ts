@@ -36,7 +36,7 @@ const instance = axios.create({
 // API
 
 export const API = {
-    getPeople: (currentPage: number, pageSize: number, searchForm: searchFormType = {term: '', friend: ''}) => {
+    getPeople: (currentPage: number = 1, pageSize: number, searchForm: searchFormType = {term: '', friend: ''}) => {
         return instance.get<GetpeopleDataType>(`users?page=${currentPage}&count=${pageSize}&term=${searchForm.term}&friend=${searchForm.friend}`)
             .then( data => data.data)
     },

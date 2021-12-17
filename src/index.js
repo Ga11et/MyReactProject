@@ -1,15 +1,17 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-state';
-import App from './App'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
+import  AppCopy  from './AppСopy';
+import 'antd/dist/antd.css';
+
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <App />
+        <AppCopy />
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

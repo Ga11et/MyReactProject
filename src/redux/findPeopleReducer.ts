@@ -19,7 +19,7 @@ let initialState = {
     ] as Array<personType>,
     countPeople: 10000,
     countPeopleOnPage: 10,
-    active: 0 as number,
+    active: 1 as number,
     isLoading: false,
     arrayButtonsLoading: [] as Array<number>,
     searchForm: {term: '', friend: ''} as searchFormType

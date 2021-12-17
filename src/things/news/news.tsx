@@ -1,16 +1,12 @@
 import React from 'react'
 import css from './news.module.css'
 
-type propsType = {
 
-}
 
-const News: React.FC<propsType> = (props) => {
+export const NewsPage: React.FC = (props) => {
     return (
         <div className={css.item}>
             News
         </div>
     )
 }
-
-export default News

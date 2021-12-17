@@ -1,0 +1,28 @@
+.main{
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    margin-right: 8px;
+    min-height: 100px;
+    display: flex;
+}
+.main .leftDiv{
+    margin: 0px
+}
+.main .leftDiv img{
+    height: 100%;
+    border-radius: 8px;
+}
+.main .rightDiv{
+    margin: 0px;
+    padding: 0 10px;
+}
+.main .rightDiv label{
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.main .rightDiv p{
+    display: block;
+    padding-top: 10px;
+}

@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import { AppRedThunks } from './redux/appReducer';
 import { Preloader } from './things/component/preloader/preloader';
 import { withSuspense } from './hoc/withSuspense';
-const DialogsContainer = React.lazy(() => import('./things/dialogs/dialogsContainer'));
-const FindPeopleContainer = React.lazy(() => import('./things/findpeople/findpeopleContainer'));
+const Dialog = React.lazy(() => import('./things/dialogs/dialogs'));
+const FindPeople = React.lazy(() => import('./things/findpeople/findpeople'));
 const Content = React.lazy(() => import('./things/content/content'));
 const Login = React.lazy(() => import('./things/login/login'));
 const News = React.lazy(() => import('./things/news/news'));
@@ -32,10 +32,10 @@ const App = ({ initialiasationSuccess, ...props }) => {
       <Switch>
         <Redirect exact from='/' to='/profile' />
         <Route path='/profile/:userId?' render={withSuspense(Content)} />
-        <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+        <Route path='/dialogs' render={withSuspense(Dialog)} />
         <Route path='/news' render={withSuspense(News)} />
         <Route path='/music' render={withSuspense(Music)} />
-        <Route path='/find' render={withSuspense(FindPeopleContainer)} />
+        <Route path='/find' render={withSuspense(FindPeople)} />
         <Route path='/settings' render={withSuspense(Settings)} />
         <Route path='/login' render={withSuspense(Login)} />
       </Switch>

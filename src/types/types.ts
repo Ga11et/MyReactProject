@@ -57,8 +57,14 @@ export type friendsType = {
     id: number
 }
 export type searchFormType = {
-    term: string,
-    friend: string
+    term?: string,
+    friend?: string
+}
+export type ChatMessageType = {
+    message: string
+    photo: string
+    userId: number
+    userName: string
 }
 
 type actionType<T> = T extends {[key: string]: infer U} ? U : never

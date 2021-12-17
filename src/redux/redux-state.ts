@@ -7,6 +7,7 @@ import { contentReducer } from "./contentReducer";
 import { dialogReducer } from "./dialogsReducer";
 import { navReducer } from "./navReducer";
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import { chatReducer } from "./chatReducer";
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     findpeople: findPeopleReducer,
     navPage: navReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    chat: chatReducer
 })
 
 type RootReducerType = typeof reducers

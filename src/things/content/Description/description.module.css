@@ -1,11 +1,7 @@
-.item img{
-    width: 100%;
-    margin-bottom: 30px;
-}
 .item .profile{
     display: grid;
-    grid-template-columns: 30% 1fr;
-    margin: 30px;
+    grid-template-columns: 300px 1fr;
+    margin: 0px 0px 30px 0px;
     padding: 10px;
     border: 1px solid white;
     border-radius: 8px;
@@ -17,8 +13,10 @@
 .item .profile img:hover ~ .change label{
     display: inline-block;
 }
-.item .profile  div .change{
-    position: absolute;
+.item .profile div .change{
+    position: relative;
+    top: 15px;
+    left: 15px;
 }
 .item .profile > .noPic{
     padding: 0px 0px 0px 30px;
@@ -27,7 +25,8 @@
 .item .profile .noPic .description{
     position: absolute;
     right: 0px;
-    bottom: 0px;
+    bottom: -4px;
+    font-size: 1.3em;
 }
 .item .profile > .noPic button{
     background-color: rgba(0, 0, 0, 0.15);
@@ -51,7 +50,7 @@
 }
 .item .profile > div h3{
     margin: 0px;
-    font-size: 1.6em;
+    font-size: 2em;
 }
 .item .profile  div .change input{
     display: none;
@@ -70,11 +69,11 @@
     border: 1px solid transparent;
     transition: .3s;
 }
-.item .profile  div .change label:hover{
+.item .profile div .change label:hover{
     border: 1px solid white;
     display: inline-block;
 }
-.item .profile  div  .description{
+.item .profile div .description{
     margin: 15px 0px 0px 0px;
     text-align: right;
 }
@@ -82,11 +81,11 @@
     display: inline-flex;
     align-items: center;
     border-bottom: 1px solid white;
-    padding-right: 10px;
+    padding-right: 15px;
     margin-bottom: 10px;
 }
 .item .profile > div .searchWork img{
-    width: 30px;
+    width: 37px;
     padding: 10px;
 }
 .item .profile div .contacts p{

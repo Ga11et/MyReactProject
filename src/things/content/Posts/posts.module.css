@@ -1,47 +1,31 @@
-.item {
-    padding-left: 30px;
-}
 .item textarea{
+    display: block;
     width: 400px;
-    height: 150px;
+    height: 120px;
+    font-size: 1em;
+    background: transparent;
     border-radius: 8px;
     outline: none;
     border: 1px solid white;
-    background-color: rgb(77, 77, 189);
     padding: 20px;
     box-sizing: border-box;
-    font-size: 22px;
 }
 .item form > div {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
-.item .error textarea{
-    border-color: rgb(156, 24, 24);
-}
-/* .item .error span{  
-    display: inline-block;
-    background-color: rgb(156, 24, 24);
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    margin-left: 15px;
-} */
+
 .item button{
     margin: 10px 0px 30px 0px;
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 1em;
     border: 1px solid white;
     border-radius: 8px;
     background-color: transparent;
-    transition: .6s;
 }
-.item button:hover{
-    cursor: pointer;
-    background-color: rgb(77, 77, 189);
-}
+
 .item .swap{
     display: flex;
     flex-direction: column-reverse;

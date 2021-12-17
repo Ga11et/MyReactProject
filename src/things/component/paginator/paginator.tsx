@@ -28,10 +28,10 @@ export const PaginatorScript: React.FC<propsType> = (props) => {
     return (
         <div className={css.item}>
             {currentNumbersPage > 1 && <button
-                onClick={() => setCurrentNumbersPage(currentNumbersPage - 1)} >-</button>}
+                onClick={() => setCurrentNumbersPage(currentNumbersPage - 1)} ><label>-</label></button>}
             {numbersJsx}
             {currentNumbersPage < count / numbersOnOnePage && <button
-                onClick={() => setCurrentNumbersPage(currentNumbersPage + 1)} >+</button>}
+                onClick={() => setCurrentNumbersPage(currentNumbersPage + 1)} ><label>+</label></button>}
         </div>
     )
 }

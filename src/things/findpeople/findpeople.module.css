@@ -3,14 +3,14 @@ a{
     text-decoration: inherit;
 }
 .main{
-    background-color: rgb(84, 96, 207);
     position: relative;
+    width: 100%;
 }
 .main > img{
     width: 50px;
-        position: absolute;
-        top: 30px;
-        right: 30px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }
 .main > div{
     margin: 30px 30px 0px 30px;

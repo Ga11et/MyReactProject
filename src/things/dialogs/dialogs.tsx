@@ -5,23 +5,26 @@ import React from 'react'
 import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form'
 import { ErrorSpan } from '../component/error/error'
 import { maxLengthCreator, required } from '../component/validatior/valodator'
-import { dialogsPersonType, messageType } from '../../types/types'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-state'
+import { DialogRedActions } from '../../redux/dialogsReducer'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
-type propsType = {
-    persons: Array<dialogsPersonType>
-    messages: Array<messageType>
 
-    newMessage: (text: string) => void
-}
 
-const Dialogs: React.FC<propsType> = (props) => {
+export const DialogsPage: React.FC<{}> = (props) => {
+
+    const persons = useSelector((state: AppStateType) => state.dialogPage.persons)
+    const messages = useSelector((state: AppStateType) => state.dialogPage.messages)
+
+    const dispatch = useDispatch()
 
     const submit = (data: IUserDialogForm) => {
-        props.newMessage(data.textWriting)
+        dispatch(DialogRedActions.newMessage(data.textWriting))
     }
 
-    let personComponents = props.persons.map(el => <Person key={el.id} img={el.img} url={el.url} name={el.name} />)
-    let messageComponents = props.messages.map(el => <Message key={el.id} author={el.author} message={el.message} />)
+    let personComponents = persons.map(el => <Person key={el.id} img={el.img} url={el.url} name={el.name} />)
+    let messageComponents = messages.map(el => <Message key={el.id} author={el.author} message={el.message} />)
 
     return (
         <div className={css.item}>
@@ -72,5 +75,3 @@ const Textarea: React.FC<WrappedFieldProps & TextAreaPropsType> = ({input, meta,
 }
 
 const DialogFormRedux = reduxForm<IUserDialogForm, IPropsDialogForm>({ form: "dialogWriting" })(DialogForm)
-
-export default Dialogs
